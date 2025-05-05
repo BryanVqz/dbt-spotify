@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: spotify       # Source system name
+    schema: raw         # Schema containing the source tables
+    tables:
+      - name: listening_raw              # Table name used under dbt code
+        identifier: listening_data_raw   # Table name as it exists in the database
+        description: "Raw JSON Spotify listening data from Snowflake"
