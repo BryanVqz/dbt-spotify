@@ -21,7 +21,7 @@ WITH raw_spotify_data AS (
 )
 
 SELECT
-    user
+    REPLACE(user, 'Spotify ', '')                                                       AS user 
     ,timestamp
     ,country
     ,album_name
