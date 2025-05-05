@@ -16,7 +16,6 @@ WITH raw_spotify_data AS (
     ,data:offline::boolean                              AS offline
     ,data:incognito_mode::boolean                       AS incognito_mode
     ,data:spotify_track_uri::string                     AS track_uri
-    ,
     FROM {{ source('spotify','listening_raw') }}
     --spotify.raw.listening_data_raw
 )
@@ -36,6 +35,5 @@ SELECT
     ,CASE WHEN skipped IS NULL THEN 'false' ELSE skipped END                             AS skipped_flag
     ,CASE WHEN offline IS NULL THEN 'false' ELSE offline END                             AS offline_flag
     ,CASE WHEN incognito_mode IS NULL THEN 'false' ELSE incognito_mode END               AS incognito_flag
-    ,{{ dbt_utils.generate_surrogate_key(['artist_name', 'album_name', 'track_name']) }} AS track_id
 FROM raw_spotify_data
 WHERE track_uri IS NOT NULL

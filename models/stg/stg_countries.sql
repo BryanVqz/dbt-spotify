@@ -1,9 +1,11 @@
 WITH country_data AS (
     SELECT DISTINCT
-        country_id
-        ,country
+        country
     FROM {{ ref('stg_listening') }}
     WHERE country IS NOT NULL
 )
 
-SELECT * FROM country_data
+SELECT 
+    {{ dbt_utils.generate_surrogate_key(['country']) }}  AS country_id
+    ,country
+FROM country_data
