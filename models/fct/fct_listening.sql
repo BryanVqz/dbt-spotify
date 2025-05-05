@@ -38,7 +38,8 @@ SELECT
     ,LD.offline_flag
     ,LD.incognito_flag
 FROM listening_data LD
-LEFT JOIN user_data UD ON LD.user = UD.user
+LEFT JOIN user_data UD 
+    ON LD.user = UD.user
 LEFT JOIN track_data TD 
     ON LD.track_name = TD.track_name
     AND LD.album_name = TD.album_name

@@ -4,4 +4,5 @@ WITH user_data AS (
     WHERE user IS NOT NULL
 )
 
-SELECT * FROM user_data
+SELECT *
+FROM user_data
