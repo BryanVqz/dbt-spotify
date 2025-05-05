@@ -28,8 +28,6 @@ SELECT
     UD.user_id
     ,LD.timestamp
     ,CD.country_id
-    --,TD.album_name
-    --,TD.artist_name
     ,TD.track_id
     ,DD.device_id
     ,LD.ms_played
