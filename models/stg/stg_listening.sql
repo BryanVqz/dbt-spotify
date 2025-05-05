@@ -1,10 +1,6 @@
 -- generating model for source('SPOTIFY', 'LISTENING_DATA_RAW')...
 WITH raw_spotify_data AS (
-    SELECT * FROM {{ source('spotify','listening_raw') }}
-    --spotify.raw.listening_data_raw
-)
-
-SELECT
+    SELECT
     split_part(file_name, '/', 1)                       AS user
     ,data:ts::timestamp                                 AS timestamp
     ,data:conn_country::string                          AS country
@@ -20,4 +16,26 @@ SELECT
     ,data:offline::boolean                              AS offline
     ,data:incognito_mode::boolean                       AS incognito_mode
     ,data:spotify_track_uri::string                     AS track_uri
+    ,
+    FROM {{ source('spotify','listening_raw') }}
+    --spotify.raw.listening_data_raw
+)
+
+SELECT
+    user
+    ,timestamp
+    ,country
+    ,album_name
+    ,artist_name
+    ,track_name
+    ,ms_played
+    ,platform
+    ,reason_start
+    ,reason_end
+    ,CASE WHEN shuffle IS NULL THEN 'false' ELSE shuffle END                             AS shuffle_flag
+    ,CASE WHEN skipped IS NULL THEN 'false' ELSE skipped END                             AS skipped_flag
+    ,CASE WHEN offline IS NULL THEN 'false' ELSE offline END                             AS offline_flag
+    ,CASE WHEN incognito_mode IS NULL THEN 'false' ELSE incognito_mode END               AS incognito_flag
+    ,{{ dbt_utils.generate_surrogate_key(['artist_name', 'album_name', 'track_name']) }} AS track_id
 FROM raw_spotify_data
+WHERE track_uri IS NOT NULL
