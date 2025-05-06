@@ -13,7 +13,8 @@ WITH users_data AS (
 )
 
 SELECT DISTINCT 
-    ROW_NUMBER() OVER (ORDER BY T2.user) AS user_id
+    --ROW_NUMBER() OVER (ORDER BY T2.user) AS user_id
+    {{ dbt_utils.generate_surrogate_key(['T1.user','T2.email']) }}  AS user_id
     ,T1.user
     ,T2.email
 FROM users_data T1

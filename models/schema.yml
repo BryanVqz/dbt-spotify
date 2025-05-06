@@ -121,3 +121,9 @@ models:
         description: "track lenght in ms"
         tests:
           - not_negative
+      - name: track_id
+        description: "ID correponding for the track listened"
+        tests:
+          - relationships:
+              field: track_id
+              to: ref('dim_tracks')
