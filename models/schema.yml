@@ -7,6 +7,8 @@ models:
       - name: user
         description: "Identifier for user account"
         tests:
+          ## dbt test --select test_type:generic
+          ## dbt test --select test_type:singular
           ## unique
           ## relationship
           ## accepted_values
@@ -111,4 +113,11 @@ models:
 
   - name: stg_countries
     description: "List of countries including abreviation and full name"
-        
+
+  - name: fct_listening
+    description: "Table materialized with track data"
+    columns:
+      - name: ms_played
+        description: "track lenght in ms"
+        tests:
+          - not_negative
