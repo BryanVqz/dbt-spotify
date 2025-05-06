@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: stg_listening
+    description: "Spotify JSON cleansed as a structured table"
+    columns:
+      - name: user
+        description: "Identifier for user account"
+        tests:
+          ## unique
+          ## relationship
+          ## accepted_values
+          - not_null
+      - name: country
+        description: "Identifier for country account"
+        tests:
+          - not_null
+      - name: album_name
+        description: "Identifier for album name for track"
+        tests:
+          - not_null
+      - name: artist_name
+        description: "Identifier for artist name for track"
+        tests:
+          - not_null
+      - name: track_name
+        description: "Identifier for track listened"
+        tests:
+          - not_null
+      - name: platform
+        description: "Identifier for platform where track was listened"
+        tests:
+          - not_null
+      - name: reason_start
+        description: "Reason why track was started"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'trackdone',
+                'backbtn',
+                'clickrow',
+                'playbtn',
+                'fwdbtn',
+                'appload',
+                'trackerror',
+                'switched-to-video',
+                'autoplay',
+                'remote',
+                'trackstart',
+                'unknown'
+              ]
+      - name: reason_end
+        description: "Reason why track was ended"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'backbtn'
+                ,'clickrow'
+                ,'endplay'
+                ,'fwdbtn'
+                ,'logout'
+                ,'playbtn'
+                ,'remote'
+                ,'switched-to-video'
+                ,'trackdone'
+                ,'trackend'
+                ,'trackerror'
+                ,'unexpected-exit'
+                ,'unexpected-exit-while-paused'
+                ,'unknown'
+              ]
+      - name: shuffle_flag
+        description: "is shuffle? true or false"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'true'
+                ,'false'
+              ]
+      - name: skipped_flag
+        description: "is skipped? true or false"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'true'
+                ,'false'
+              ]
+      - name: offline_flag
+        description: "is offline? true or false"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'true'
+                ,'false'
+              ]
+      - name: incognito_flag
+        description: "is incognito? true or false"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [
+                'true'
+                ,'false'
+              ]
+
+
+  - name: stg_countries
+    description: "List of countries including abreviation and full name"
+        
