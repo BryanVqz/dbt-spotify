@@ -29,8 +29,8 @@ SELECT
     ,track_name
     ,ms_played
     ,platform
-    ,reason_start
-    ,reason_end
+    ,CASE WHEN reason_start = '' THEN 'trackstart' ELSE reason_start END                 AS reason_start
+    ,CASE WHEN reason_end = '' THEN 'trackend' ELSE reason_end END                     AS reason_end
     ,CASE WHEN shuffle IS NULL THEN 'false' ELSE shuffle END                             AS shuffle_flag
     ,CASE WHEN skipped IS NULL THEN 'false' ELSE skipped END                             AS skipped_flag
     ,CASE WHEN offline IS NULL THEN 'false' ELSE offline END                             AS offline_flag
