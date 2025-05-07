@@ -34,7 +34,7 @@ models:
         tests:
           - not_null
       - name: reason_start
-        description: "Reason why track was started"
+        description: "{{ doc('track_start_definitions') }}"
         tests:
           - not_null
           - accepted_values:
@@ -53,7 +53,7 @@ models:
                 'unknown'
               ]
       - name: reason_end
-        description: "Reason why track was ended"
+        description: "{{ doc('track_end_definitions') }}"
         tests:
           - not_null
           - accepted_values:
