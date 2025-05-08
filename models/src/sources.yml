@@ -9,7 +9,7 @@ sources:
         description: "Raw JSON Spotify listening data from Snowflake"
         freshness: 
           error_after: 
-            count: 7
+            count: 10
             period: day
           warn_after:
             count: 1

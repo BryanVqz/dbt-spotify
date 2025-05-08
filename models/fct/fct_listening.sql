@@ -30,7 +30,7 @@ SELECT
     ,CD.country_id
     ,TD.track_id
     ,DD.device_id
-    ,LD.ms_played
+    ,{{ms_to_sec('ms_played')}} AS seconds_played
     ,LD.reason_start
     ,LD.reason_end
     ,LD.shuffle_flag
