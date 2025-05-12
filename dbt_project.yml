@@ -1,4 +1,3 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
@@ -40,3 +39,9 @@ models:
     # Applies to all files under models/example/
     mart:
       +materialized: table
+  snowflake_spend:
+    enabled: false
+    schema: spend
+    xf:
+      snowflake_warehouse_monitoring_xf:
+        enabled: false 

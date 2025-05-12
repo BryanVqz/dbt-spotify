@@ -33,6 +33,10 @@ models:
         description: "Identifier for platform where track was listened"
         tests:
           - not_null
+      - name: ms_played
+        description: "track lenght in ms"
+        tests:
+          - not_negative
       - name: reason_start
         description: "{{ doc('track_start_definitions') }}"
         tests:
@@ -117,8 +121,8 @@ models:
   - name: fct_listening
     description: "Table materialized with track data"
     columns:
-      - name: ms_played
-        description: "track lenght in ms"
+      - name: seconds_played
+        description: "track lenght in seconds"
         tests:
           - not_negative
       - name: track_id
