@@ -6,6 +6,7 @@ select
     table_schema,
     table_name,
     last_altered
+
 from {{ database }}.information_schema.tables
 where table_schema = upper('{{ schema }}')
 order by last_altered desc
