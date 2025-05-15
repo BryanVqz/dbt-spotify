@@ -44,5 +44,5 @@ models:
     mart:
       +materialized: table
     stg:
-      +materialized: ephimeral
+      +materialized: ephemeral
     
