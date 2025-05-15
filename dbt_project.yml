@@ -39,9 +39,3 @@ models:
     # Applies to all files under models/example/
     mart:
       +materialized: table
-  snowflake_spend:
-    enabled: false
-    schema: spend
-    xf:
-      snowflake_warehouse_monitoring_xf:
-        enabled: false 
