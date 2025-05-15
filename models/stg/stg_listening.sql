@@ -1,4 +1,10 @@
 -- generating model for source('SPOTIFY', 'LISTENING_DATA_RAW')...
+{{
+    config(
+        materialized='view'
+    )
+}}
+
 WITH raw_spotify_data AS (
     SELECT
     split_part(file_name, '/', 1)                       AS user

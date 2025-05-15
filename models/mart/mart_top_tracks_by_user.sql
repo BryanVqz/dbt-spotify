@@ -1,9 +1,3 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
-
 WITH fct_listening AS (
     SELECT * FROM {{ ref('fct_listening') }}
 )

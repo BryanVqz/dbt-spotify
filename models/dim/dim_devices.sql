@@ -1,9 +1,3 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
-
 WITH device_data AS (
   SELECT * FROM {{ ref('stg_devices') }}
 )
