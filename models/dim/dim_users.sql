@@ -1,9 +1,3 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
-
 WITH users_data AS (
     SELECT * FROM {{ ref('stg_users') }}
 )

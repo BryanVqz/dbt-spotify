@@ -1,9 +1,3 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
-
 WITH country_data AS (
   SELECT * FROM {{ ref('stg_countries') }}
 )
