@@ -1,0 +1,14 @@
+exposures:
+  - name: spotify_analysis
+    label: spotify_analysis
+    type: dashboard
+    maturity: medium
+    url: https://e16dcc27.us2a.app.preset.io/superset/dashboard/8/?native_filters_key=SHJ41J6aJyBib4iwMNEjKJmYBopzpUogq3WO90i275bkUzJx9X6EMCNQ2YIgOuUW
+    description: Exectuive dashboard with main information about Spotify raw data.
+
+    depends_on:
+      - ref('mart_top_tracks_by_user')
+
+    owner:
+      name: Bryan Quezada
+      email: bryan.quezada@yourdomain.com
