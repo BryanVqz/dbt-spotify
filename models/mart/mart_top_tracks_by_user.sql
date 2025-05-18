@@ -12,7 +12,7 @@ WITH fct_listening AS (
 
 
 SELECT 
-    TO_CHAR(LD.timestamp, 'YYYY-MM') AS year_month
+    TO_CHAR(LD.listening_timestamp, 'YYYY-MM') AS year_month
    ,UD.user
    ,TD.track_name
    ,TD.artist_name
@@ -21,5 +21,5 @@ FROM fct_listening LD
 LEFT JOIN dim_users UD ON LD.user_id = UD.user_id
 LEFT JOIN dim_tracks TD ON LD.track_id = TD.track_id
 WHERE LD.skipped_flag = 'false'
-GROUP BY TO_CHAR(LD.timestamp, 'YYYY-MM'), UD.user, TD.track_name, TD.artist_name
+GROUP BY TO_CHAR(LD.listening_timestamp, 'YYYY-MM'), UD.user, TD.track_name, TD.artist_name
 ORDER BY COUNT(LD.track_id) DESC, UD.user

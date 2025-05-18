@@ -8,7 +8,7 @@
 WITH raw_spotify_data AS (
     SELECT
     split_part(file_name, '/', 1)                       AS user
-    ,data:ts::timestamp                                 AS timestamp
+    ,data:ts::timestamp                                 AS listening_timestamp
     ,data:conn_country::string                          AS country
     ,data:master_metadata_album_album_name::string      AS album_name
     ,data:master_metadata_album_artist_name::string     AS artist_name
@@ -28,7 +28,7 @@ WITH raw_spotify_data AS (
 
 SELECT
     REPLACE(user, 'Spotify ', '')                                                       AS user 
-    ,timestamp
+    ,listening_timestamp
     ,country
     ,album_name
     ,artist_name
