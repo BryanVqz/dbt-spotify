@@ -1,5 +1,16 @@
-WITH listening_data AS (
+{{ config(
+    materialized='incremental'
+) }}
+
+WITH max_listening_timestamp AS (
+    SELECT MAX(listening_timestamp) AS max_ts FROM {{ this }}
+),
+
+listening_data AS (
     SELECT * FROM {{ ref('stg_listening') }}
+    {% if is_incremental() %}
+    WHERE listening_timestamp >= (SELECT max_ts FROM max_listening_timestamp)
+    {% endif %}
 )
 
 ,user_data AS (
@@ -18,9 +29,9 @@ WITH listening_data AS (
     SELECT * FROM {{ ref('dim_devices') }}
 )
 
-SELECT 
+SELECT
     UD.user_id
-    ,LD.timestamp
+    ,LD.listening_timestamp
     ,CD.country_id
     ,TD.track_id
     ,DD.device_id
