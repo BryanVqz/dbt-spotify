@@ -56,6 +56,10 @@ models:
                 'trackstart',
                 'unknown'
               ]
+              config:
+                severity: warn
+                error_if: ">10"
+                warn_if: ">1"
       - name: reason_end
         description: "{{ doc('track_end_definitions') }}"
         tests:
